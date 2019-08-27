@@ -1,16 +1,17 @@
-import React,{useState} from 'react';
+import React,{useState, useContext,useEffect} from 'react';
 import BookSlideItem from './BookSlideItem';
 import { MobileStepper, Button } from '@material-ui/core';
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import styled from 'styled-components';
+import { observer, MobXProviderContext } from 'mobx-react';
 
 const Wrapper = styled.div`
     width:500px;
 `;
 
 const BookSlide = ({bookList})=>{
-
+    const {bookStore} = useContext(MobXProviderContext);
     const maxSteps = bookList.length;
     const [activeStep,setActiveStep] = useState(0);
 
@@ -21,6 +22,10 @@ const BookSlide = ({bookList})=>{
     const handleBack=()=>{
         setActiveStep(prevActiveStep =>prevActiveStep-1);
     }
+
+    useEffect(() => {
+        console.log(`useEffect`)
+    }, []);
 
     return (
         <Wrapper>
@@ -50,4 +55,4 @@ const BookSlide = ({bookList})=>{
     );
 }
 
-export default BookSlide;
+export default observer(BookSlide);

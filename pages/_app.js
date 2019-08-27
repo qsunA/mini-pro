@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Head from "next/head";
 import { Provider } from 'mobx-react';
@@ -7,6 +7,11 @@ import RootStore from '../src/store/RootStore';
 const store = new RootStore();
 
 const App = ({Component})=>{
+
+    useEffect(()=>{
+        store.bookStore.initBookList();
+    },[]);
+
     return(
         <>
             <Head>
