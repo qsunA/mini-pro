@@ -1,0 +1,21 @@
+{
+  "name": "mini-pro-ex",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@material-ui/core": "^4.3.3",
+    "@material-ui/icons": "^4.2.1",
+    "mobx": "^5.13.0",
+    "mobx-react-lite": "^1.4.1",
+    "next": "^9.0.4",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "styled-components": "^4.3.2"
+  },
+  "scripts": {
+    "dev": "next -p 9090",
+    "build": "next build",
+    "start": "next start"
+  }
+}
