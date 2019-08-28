@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext,useEffect, useState } from 'react';
 import BookSlide from './book/BookSlide';
 import styled from 'styled-components';
+import { observer, MobXProviderContext } from 'mobx-react';
 
 const tutorialSteps = [
     {
@@ -51,14 +52,23 @@ const WrapperContent = styled.div`
 
 
 const DefaultPage = ()=>{
+  const {bookStore} = useContext(MobXProviderContext);
+  const [bookList, setBookList] = useState('');
+
+  useEffect(() => {
+    const books=bookStore.loadBookList();
+    console.log(`bookList ${bookList.length}`)
+    setBookList(books); 
+  }, []);
+
     return(
         <Wrapper>
             <WrapperInner>
-                <BookSlide bookList={tutorialSteps}/>
+                <BookSlide bookList={bookList}/>
             </WrapperInner>
         </Wrapper>
         
     );
 }
 
-export default DefaultPage;
+export default observer(DefaultPage);

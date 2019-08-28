@@ -24,12 +24,12 @@ const BookSlide = ({bookList})=>{
     }
 
     useEffect(() => {
-        console.log(`useEffect`)
+        console.log(`useEffect ${bookList}`)
     }, []);
 
     return (
         <Wrapper>
-            <BookSlideItem bookItem={bookList[activeStep]}/>
+            {/* <BookSlideItem bookItem={bookList[activeStep]}/>
             <MobileStepper
                 steps={maxSteps}
                 variant = "dots"
@@ -50,7 +50,7 @@ const BookSlide = ({bookList})=>{
                     <KeyboardArrowLeft/>Back
                 </Button>
                 }
-            />
+            /> */}
         </Wrapper>
     );
 }

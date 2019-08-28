@@ -1,6 +1,4 @@
-import BookSlide from "../src/components/book/BookSlide";
-import styled from 'styled-components';
-import DefaultPage from "../src/components/DefaultPage";
+import DefaultPage from '../components/DefaultPage';
 
 const Home=()=>{
     return(

@@ -2,13 +2,16 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Head from "next/head";
 import { Provider } from 'mobx-react';
-import RootStore from '../src/store/RootStore';
+import * as getStores from '../store';
+import { configure } from 'mobx';
+import { withMobx } from 'next-mobx-wrapper';
 
-const store = new RootStore();
+configure({enforceActions:'observed'});
 
-const App = ({Component})=>{
+const App = ({Component,store})=>{
 
     useEffect(()=>{
+        console.log(`app useEffect`)
         store.bookStore.initBookList();
     },[]);
 
@@ -17,15 +20,16 @@ const App = ({Component})=>{
             <Head>
                 <title>App</title>
             </Head>
-            <Provider store={store}>
+            <Provider {...store}>
                 <Component/>
             </Provider>
         </>
     )
 }
 
-App.propTypes ={
-    Component : PropTypes.elementType// jsx 에 들어갈 수 있는 모든 것을 node라고 한다. 
-}
+App.propTypes = {
+  Component: PropTypes.elementType.isRequired,
+  store: PropTypes.object.isRequired
+};
 
-export default App; 
+export default withMobx(getStores)(App); 

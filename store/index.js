@@ -1,0 +1,1 @@
+export {getBookStore} from './BookStore';
